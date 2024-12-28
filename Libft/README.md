@@ -43,11 +43,11 @@ This will create `libft.a` static library.
 ```
 2. Compile your program with the library:
 ```bash
-gcc my_program.c libft.a
+gcc my_program.c libft.a -o my_program
 ```
 3. Run your program:
 ```bash
-./a.out
+./my_program
 ```
 
 ## Function Categories
