@@ -2,6 +2,9 @@
 
 A simple 2D game built using the MinilibX graphics library. The player needs to collect all collectibles and reach the exit while avoiding obstacles.
 
+<img width="1144" alt="so_long" src="https://github.com/user-attachments/assets/b7f8bf8d-0b56-4bd1-b401-cdcd37be1718" />
+
+
 ## Description
 
 so_long is a basic 2D game where the player navigates through a map to collect all items before reaching the exit. The game features:
