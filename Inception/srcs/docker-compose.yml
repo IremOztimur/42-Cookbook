@@ -1,0 +1,74 @@
+version: "3.8"
+
+networks:
+  inception:
+    name: inception
+    driver: bridge
+
+volumes:
+  wordpress_data:
+    driver: local
+    name: wordpress_data
+    driver_opts:
+      type: none
+      o: bind
+      device: /$HOME/data/wordpress
+  mariadb_data:
+    driver: local
+    name: mariadb_data
+    driver_opts:
+      type: none
+      o: bind
+      device: /$HOME/data/mariadb
+
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    env_file:
+      - .env
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - inception
+    restart: unless-stopped
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
+    restart: unless-stopped
+
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
+    restart: unless-stopped
+
+  cadvisor:
+    container_name: cadvisor
+    build: ./requirements/bonus/cadvisor/.
+    ports:
+      - "8080:8080"
+    networks:
+      - inception
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: unless-stopped
