@@ -1,0 +1,191 @@
+# version: "3.4"
+networks:
+  lastdance:
+    name: lastdance
+    driver: bridge
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./user_db
+  web_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./authService
+  chat_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./chatService
+  api_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./apigateway
+  tournament_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./tournament
+  match-making:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./matchmaking
+  game_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./game
+services:
+  apigateway:
+    container_name: apigateway
+    build: ./apigateway
+    entrypoint: ./start.sh
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - api_data:/apigateway
+    networks:
+      - lastdance
+    depends_on:
+      - user
+  user:
+    container_name: userservice
+    build: ./authService
+    entrypoint: ./start.sh
+    command: python manage.py runserver 0.0.0.0:8001
+    environment:
+      USER_DB_USER: ${USER_DB_USER}
+      USER_DB_PASS: ${USER_DB_PASS}
+      USER_DB_NAME: ${USER_DB_NAME}
+      USER_DB_HOST: ${USER_DB_HOST}
+      USER_DB_PORT: ${USER_DB_PORT}
+    ports:
+      - "8001:8001"
+    volumes:
+      - web_data:/authServices
+    networks:
+      - lastdance
+    depends_on:
+      - users_db
+  chat:
+    container_name: chatservice
+    build: ./chatService
+    entrypoint: ./start.sh
+    command: python manage.py runserver 0.0.0.0:8002
+    environment:
+      USER_DB_USER: ${USER_DB_USER}
+      USER_DB_PASS: ${USER_DB_PASS}
+      USER_DB_NAME: ${USER_DB_NAME}
+      USER_DB_HOST: ${USER_DB_HOST}
+      USER_DB_PORT: ${USER_DB_PORT}
+    ports:
+      - "8002:8002"
+    volumes:
+      - chat_data:/chatServices
+      - ./authService/uploads/:/chatServices/uploads/
+    networks:
+      - lastdance
+    depends_on:
+      - users_db
+      - user
+  tournament:
+    container_name: tournament-app
+    build: ./tournament
+    command: python manage.py runserver 0.0.0.0:8003
+    environment:
+      USER_DB_USER: ${USER_DB_USER}
+      USER_DB_PASS: ${USER_DB_PASS}
+      USER_DB_NAME: ${USER_DB_NAME}
+      USER_DB_HOST: ${USER_DB_HOST}
+      USER_DB_PORT: ${USER_DB_PORT}
+    ports:
+      - "8003:8003"
+    volumes:
+      - tournament_data:/tournament-app
+      - ./authService/uploads/:/tournament-app/uploads/
+    networks:
+      - lastdance
+    depends_on:
+      - user
+  pong:
+    container_name: pong-app
+    build: ./game
+    command: python manage.py runserver 0.0.0.0:8005
+    environment:
+      USER_DB_USER: ${USER_DB_USER}
+      USER_DB_PASS: ${USER_DB_PASS}
+      USER_DB_NAME: ${USER_DB_NAME}
+      USER_DB_HOST: ${USER_DB_HOST}
+      USER_DB_PORT: ${USER_DB_PORT}
+    ports:
+      - "8005:8005"
+    volumes:
+      - game_data:/pong-app
+      - ./authService/uploads/:/pong-app/uploads/
+    networks:
+      - lastdance
+    depends_on:
+      - user
+  match_making:
+    container_name: match_making
+    build: ./matchmaking
+    command: python manage.py runserver 0.0.0.0:8004
+    environment:
+      USER_DB_USER: ${USER_DB_USER}
+      USER_DB_PASS: ${USER_DB_PASS}
+      USER_DB_NAME: ${USER_DB_NAME}
+      USER_DB_HOST: ${USER_DB_HOST}
+      USER_DB_PORT: ${USER_DB_PORT}
+    ports:
+      - "8004:8004"
+    volumes:
+      - match-making:/match-making
+      - ./authService/uploads/:/match-making/uploads/
+    networks:
+      - lastdance
+    depends_on:
+      - user
+      - tournament
+  front_end:
+    container_name: front_end
+    build: ./nginx
+    restart: always
+    volumes:
+      - ./nginx/conf/default.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf/localhost.key:/etc/ssl/private/localhost.key
+      - ./nginx/conf/localhost.pem:/etc/ssl/certs/localhost.pem
+      - ./nginx/htmlfile:/usr/share/nginx/html
+      - ./nginx/log/:/var/log/nginx/
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - lastdance
+    depends_on:
+      - user
+  users_db:
+    container_name: users_db
+    image: postgres:16.4
+    restart: always
+    environment:
+      POSTGRES_USER: authuser
+      POSTGRES_PASSWORD: Zodiyac123++
+      POSTGRES_DB: users
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - lastdance

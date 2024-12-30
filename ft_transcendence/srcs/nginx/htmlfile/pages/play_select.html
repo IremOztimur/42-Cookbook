@@ -1,0 +1,60 @@
+<div class="idx-container">
+    <main>
+        <div class="idx-paddle-3d">
+            <div class="idx-paddle"></div>
+        </div>
+
+        <div class="idx-game-modes">
+            <div class="idx-game-mode">
+                <h2>Player vs Computer</h2>
+                <p>Pong: Where Humans and Bots Clash!</p>
+                <a href="/player_ai" onclick="route()">Play Now</a>
+            </div>
+            <div class="idx-game-mode">
+                <h2>Local (1 vs 1)</h2>
+                <p>Local clash, real competition!</p>
+                <a href="/local" onclick="route()">Play Now</a>
+            </div>
+            <div class="idx-game-mode">
+                <h2>Multiplayer (1 vs 1)</h2>
+                <p>Compete against friends in real-time</p>
+                <a href="#" id="playNowLink">Play Now</a>
+            </div>
+            <div class="idx-game-mode">
+                <h2>Tournament (4 Player)</h2>
+                <p>Join epic tournaments and claim victory</p>
+                <a href="/tournaments" onclick="route()">Play Now</a>
+            </div>
+
+        </div>
+
+        <div class="idx-how-to-play">
+            <h2>How to Play Pong</h2>
+            <p>Control your paddle using the arrow keys:</p>
+            <div class="idx-key-controls">
+                <div class="idx-arrow-keys">
+                    <div class="idx-arrow idx-arrow-up">▲</div>
+                    <div class="idx-arrow idx-arrow-down">▼</div>
+                </div>
+                <span>Move paddle up and down</span>
+            </div>
+            <p>Boost your paddle speed by pressing the space bar:</p>
+            <div class="idx-key-controls">
+                <div class="idx-space-bar">Space</div>
+                <span>Double paddle speed</span>
+            </div>
+        </div>
+
+        <div id="matchPopup" class="popup">
+            <div class="popup-content">
+                <h3>Match aranıyor...</h3>
+                <br>
+                <div class="profile-container">
+                    <img src="../static/user-64.png" alt="Default Profile" class="profile-pic">
+                </div>
+                <br><br>
+                <button id="cancelBtn">Cancel</button>
+            </div>
+        </div>
+    </main>
+</div>
