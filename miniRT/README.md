@@ -77,5 +77,5 @@ Scene files use the `.rt` extension and follow this format:
 
 ## Tutorials for this project
 
-[Building a miniRT — 42 Project Part 1](https://medium.com/@iremoztimur/building-a-minirt-42-project-part-1-ae7a00aebdb9)
+[Building a miniRT — 42 Project Part 1](https://medium.com/@iremoztimur/building-a-minirt-42-project-part-1-ae7a00aebdb9)\
 [MiniRT Shading Algorithms — Part 2](https://medium.com/@iremoztimur/minirt-shading-algorithms-part-2-6c46e6d81fbd)
