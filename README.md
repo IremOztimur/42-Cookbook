@@ -44,18 +44,18 @@ This repository documents projects from the Common Core and Advanced phases of t
 
 | Project | Skills | Description | Status |
 |---------|--------|-------------|---------|
-| Libft | Rigor, Algorithms | Recreated C standard library functions. | Completed |
-| ft_printf | Rigor, Algorithms | Implemented a custom printf function. | Completed |
-| get_next_line | Unix, Rigor, Algorithms | Created a function to read files line by line. | Completed |
+| [Libft](https://github.com/IremOztimur/42-Cookbook/tree/main/Libft) | Rigor, Algorithms | Recreated C standard library functions. | Completed |
+| [ft_printf](https://github.com/IremOztimur/42-Cookbook/tree/main/ft_printf) | Rigor, Algorithms | Implemented a custom printf function. | Completed |
+| [get_next_line](https://github.com/IremOztimur/42-Cookbook/tree/main/get_next_line) | Unix, Rigor, Algorithms | Created a function to read files line by line. | Completed |
 | Born2beroot | System Administration, Rigor | Introduced to virtualization and Linux basics. | Completed |
-| minitalk | Unix, Rigor | Developed a small data exchange program. | Completed |
-| so_long | Graphics, Imperative Programming | Built a small 2D game using minilibx. | Completed |
-| push_swap | Algorithms, Imperative Programming | Implemented sorting algorithms for data stacks. | Completed |
-| Philosophers | Unix, Threads, Rigor | Simulated a dining philosophers problem. | Completed |
-| minishell | Unix, Rigor | Developed a basic shell with custom commands. | Completed |
+| [minitalk](https://github.com/IremOztimur/42-Cookbook/tree/main/minitalk) | Unix, Rigor | Developed a small data exchange program. | Completed |
+| [so_long](https://github.com/IremOztimur/42-Cookbook/tree/main/so_long) | Graphics, Imperative Programming | Built a small 2D game using minilibx. | Completed |
+| [push_swap](https://github.com/IremOztimur/42-Cookbook/tree/main/push_swap) | Algorithms, Imperative Programming | Implemented sorting algorithms for data stacks. | Completed |
+| [Philosophers](https://github.com/IremOztimur/42-Cookbook/tree/main/Philosophers) | Unix, Threads, Rigor | Simulated a dining philosophers problem. | Completed |
+| [minishell](https://github.com/IremOztimur/42-Cookbook/tree/main/minishell) | Unix, Rigor | Developed a basic shell with custom commands. | Completed |
 | NetPractice | Networking, System Administration | Explored basic networking concepts. | Completed |
 | CPP Modules (00-09) | Object-Oriented Programming, Rigor | Mastered C++ concepts, including inheritance. | Completed |
-| miniRT | Graphics, Algorithms | Built a simple ray tracer for rendering scenes. | Completed |
-| Inception | System Administration, Virtualization | Built a personal VM using Docker containers. | Completed |
-| ft_irc | Networking, Rigor, Object-Oriented | Developed an IRC server in C++. | Completed |
-| ft_transcendence | Web Development, Team Collaboration | Full-stack web app with session management. | Completed |
+| [miniRT](https://github.com/IremOztimur/42-Cookbook/tree/main/miniRT) | Graphics, Algorithms | Built a simple ray tracer for rendering scenes. | Completed |
+| [Inception](https://github.com/IremOztimur/42-Cookbook/tree/main/Inception) | System Administration, Virtualization | Built a personal VM using Docker containers. | Completed |
+| [ft_irc](https://github.com/IremOztimur/42-Cookbook/tree/main/ft_irc) | Networking, Rigor, Object-Oriented | Developed an IRC server in C++. | Completed |
+| [ft_transcendence](https://github.com/IremOztimur/42-Cookbook/tree/main/ft_transcendence) | Web Development, Team Collaboration | Full-stack web app with session management. | Completed |
